@@ -1,0 +1,1 @@
+Solo un repositorio para el curso de [Programación Básica](https://platzi.com/cursos/programacion-basica/) de Platzi.
