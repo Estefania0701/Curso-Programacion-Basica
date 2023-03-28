@@ -1,5 +1,5 @@
 const mascotas = ["hipodoge", "capipepo", "ratigueya"];
-const ataques = ["FUEGO", "AGUA", "TIERRA"];
+const ataques = ["FUEGO 🔥", "AGUA 💧", "TIERRA 🌱"];
 let ataqueJugador;
 let ataqueEnemigo;
 
@@ -64,22 +64,16 @@ function seleccionarMascotaEnemigo() {
 
 function ataqueFuego() {
     ataqueJugador = "FUEGO 🔥";
-    let spanAtaqueJugador = document.getElementById("ataque-jugador");
-    spanAtaqueJugador.innerHTML = ataqueJugador;
     seleccionarAtaqueEnemigo();
 }
 
 function ataqueAgua() {
     ataqueJugador = "AGUA 💧";
-    let spanAtaqueJugador = document.getElementById("ataque-jugador");
-    spanAtaqueJugador.innerHTML = ataqueJugador;
     seleccionarAtaqueEnemigo();
 }
 
 function ataqueTierra() {
     ataqueJugador = "TIERRA 🌱";
-    let spanAtaqueJugador = document.getElementById("ataque-jugador");
-    spanAtaqueJugador.innerHTML = ataqueJugador;
     seleccionarAtaqueEnemigo();
 }
 
@@ -94,13 +88,23 @@ function atacarJugador(ataque) {
 
 function seleccionarAtaqueEnemigo() {
     let indiceAleatorio = aleatorio(0,2);
-    let ataqueEnemigo =  ataques[indiceAleatorio];
+    ataqueEnemigo =  ataques[indiceAleatorio];
 
-    spanAtaqueEnemigo = document.getElementById("ataque-enemigo");
-    spanAtaqueEnemigo.innerHTML = ataqueEnemigo;
+    crearMensajes()
+
 
 }
 
+function crearMensajes() {
+    // imprimer nuevos mensajes con los ataques
+
+    let parrafo = document.createElement("p"); // creo un párrago
+    parrafo.innerHTML = "Tu mascota atacó con " + ataqueJugador + "\nLa mascota del enemigo atacó con " + ataqueEnemigo; // le doy contenido al párrafo
+
+    sectionMensajes = document.getElementById("mensajes"); // obtengo la sección de Mensajes
+    sectionMensajes.appendChild(parrafo); // inserto el párrafo en el DOM
+
+}
 
 // evento para cuando cargue todo el HTML (página)
 // iniciar el juego
