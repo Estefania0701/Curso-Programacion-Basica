@@ -1,4 +1,5 @@
 const mascotas = ["hipodoge", "capipepo", "ratigueya"];
+let ataqueJugador;
 
 function iniciarJuego() {
     // inicia el juego
@@ -8,7 +9,17 @@ function iniciarJuego() {
     // escucho sus eventos, especificando el click, y le asigno una función
     botonMascota.addEventListener("click", seleccionarMascotaJugador);
 
+    // guardo los botones de ataque
+    let botonFuego = document.getElementById("boton-fuego");
+    let botonAgua = document.getElementById("boton-agua");
+    let botonTierra = document.getElementById("boton-tierra");
+    // escuchadores de eventos para los botones de ataque
+    botonFuego.addEventListener("click", ataqueFuego);
+    botonAgua.addEventListener("click", ataqueAgua);
+    botonTierra.addEventListener("click", ataqueTierra);
 }
+
+// ---------------------- SELECCIÓN DE MASCOTAS ------------------------------
 
 function seleccionarMascotaJugador() {
     // lanza una alerta de acuerdo a la mascota seleccionada
@@ -30,7 +41,15 @@ function seleccionarMascotaJugador() {
     seleccionarMascotaEnemigo();
 }
 
+function aleatorio(min, max) {
+    // genera un número aletarorio entre un rango
+
+    return Math.floor(Math.random() * (max - min+1) + min);
+}
+
 function seleccionarMascotaEnemigo() {
+    // escoge aletaroriamente la mascota del enemigo
+
     let indiceAleatorio = aleatorio(0,2); // genero un índice aletorio entre 0 y 2 (inclusives)
     let mascota = mascotas[indiceAleatorio]; // busco la mascota con el índice
 
@@ -38,13 +57,22 @@ function seleccionarMascotaEnemigo() {
     spanMascotaEnemigo.innerHTML = mascota.toUpperCase(); // lo modifico con la mascota aleatoria
 } 
 
-function aleatorio(min, max) {
-    // genera un número aletarorio entre un rango
+// ---------------------- SELECCIÓN DE ATAQUES ------------------------------
 
-    return Math.floor(Math.random() * (max - min+1) + min);
+function ataqueFuego() {
+    ataqueJugador = "FUEGO";
+    alert(ataqueJugador);
 }
 
+function ataqueAgua() {
+    ataqueJugador = "AGUA";
+    alert(ataqueJugador);
+}
 
+function ataqueTierra() {
+    ataqueJugador = "TIERRA";
+    alert(ataqueJugador);
+}
 
 
 // evento para cuando cargue todo el HTML (página)
