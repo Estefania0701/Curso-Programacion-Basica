@@ -2,8 +2,11 @@ const mascotas = ["HIPODOGE", "CAPIPEPO", "RATIGUEYA"];
 const ataques = ["FUEGO 🔥", "AGUA 💧", "TIERRA 🌱"];
 let mascotaJugador;
 let mascotaEnemigo;
+let vidasJugador = 3;
+let vidasEnemigo = 3;
 let ataqueJugador;
 let ataqueEnemigo;
+let resultadoCombate;
 
 function iniciarJuego() {
     // inicia el juego
@@ -102,11 +105,28 @@ function atacarJugador(ataque) {
 */
 
 function seleccionarAtaqueEnemigo() {
+    // selecciona un ataque aleatorio del enemigo
+
     let indiceAleatorio = aleatorio(0,2);
     ataqueEnemigo =  ataques[indiceAleatorio];
 
-    crearMensajes()
+    combate();
+    crearMensajes();
+}
 
+function combate() {
+    jugador = ataqueJugador.slice(0, -3);
+    enemigo = ataqueEnemigo.slice(0, -3);
+
+    if (jugador==enemigo) {
+        resultadoCombate = "EMPATE";
+    } 
+    else if ((jugador=="FUEGO" && enemigo=="TIERRA") || (jugador=="TIERRA" && enemigo=="AGUA") || (jugador=="AGUA" && enemigo=="FUEGO")) {
+        resultadoCombate = "GANASTE";
+    } 
+    else {
+        resultadoCombate = "PERDISTE";
+    }
 
 }
 
@@ -114,12 +134,13 @@ function crearMensajes() {
     // imprimer nuevos mensajes con los ataques
 
     let parrafo = document.createElement("p"); // creo un párrago
-    parrafo.innerHTML = "Tu mascota " + mascotaJugador + " atacó con " + ataqueJugador + "La mascota " + mascotaEnemigo + " del enemigo atacó con " + ataqueEnemigo; // le doy contenido al párrafo
+    parrafo.innerHTML = "Tu mascota atacó con " + ataqueJugador + " y la mascota del enemigo atacó con " + ataqueEnemigo + " ---> " + resultadoCombate; // le doy contenido al párrafo
 
     sectionMensajes = document.getElementById("mensajes"); // obtengo la sección de Mensajes
     sectionMensajes.appendChild(parrafo); // inserto el párrafo en el DOM
-
 }
+
+
 
 // evento para cuando cargue todo el HTML (página)
 // iniciar el juego
