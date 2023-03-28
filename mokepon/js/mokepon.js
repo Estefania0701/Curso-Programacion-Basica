@@ -8,15 +8,17 @@ function iniciarJuego() {
 function seleccionarMascotaJugador() {
     // lanza una alerta de acuerdo a la mascota seleccionada
     let mascotas = ["hipodoge", "capipepo", "ratigueya"];
-    let seleccion = 0
+    let seleccion = false
+    let spanMascotaJugador = document.getElementById("mascota-jugador")
     for (mascota of mascotas) {
         if (document.getElementById(mascota).checked) {
             alert("Seleccionaste a " + mascota.toUpperCase());
-            seleccion = 1;
+            seleccion = true;
+            spanMascotaJugador.innerHTML = mascota.toUpperCase(); // cambio el contenido de la página, exactamente donde sale la mascota elegida por el jugador
         }
     }
     // si el usuario oprime el botón sin haber seleccionado mascota
-    if (seleccion == 0) {
+    if (!seleccion) {
         alert("No has seleccionado ninguna mascota")
     }
 }
