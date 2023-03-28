@@ -1,5 +1,7 @@
 const mascotas = ["hipodoge", "capipepo", "ratigueya"];
+const ataques = ["FUEGO", "AGUA", "TIERRA"];
 let ataqueJugador;
+let ataqueEnemigo;
 
 function iniciarJuego() {
     // inicia el juego
@@ -36,9 +38,10 @@ function seleccionarMascotaJugador() {
     // si el usuario oprime el botón sin haber seleccionado mascota
     if (!seleccion) {
         alert("No has seleccionado ninguna mascota")
+    } // si seleccionó una mascota correctamente 
+    else {
+        seleccionarMascotaEnemigo();
     }
-
-    seleccionarMascotaEnemigo();
 }
 
 function aleatorio(min, max) {
@@ -60,18 +63,42 @@ function seleccionarMascotaEnemigo() {
 // ---------------------- SELECCIÓN DE ATAQUES ------------------------------
 
 function ataqueFuego() {
-    ataqueJugador = "FUEGO";
-    alert(ataqueJugador);
+    ataqueJugador = "FUEGO 🔥";
+    let spanAtaqueJugador = document.getElementById("ataque-jugador");
+    spanAtaqueJugador.innerHTML = ataqueJugador;
+    seleccionarAtaqueEnemigo();
 }
 
 function ataqueAgua() {
-    ataqueJugador = "AGUA";
-    alert(ataqueJugador);
+    ataqueJugador = "AGUA 💧";
+    let spanAtaqueJugador = document.getElementById("ataque-jugador");
+    spanAtaqueJugador.innerHTML = ataqueJugador;
+    seleccionarAtaqueEnemigo();
 }
 
 function ataqueTierra() {
-    ataqueJugador = "TIERRA";
-    alert(ataqueJugador);
+    ataqueJugador = "TIERRA 🌱";
+    let spanAtaqueJugador = document.getElementById("ataque-jugador");
+    spanAtaqueJugador.innerHTML = ataqueJugador;
+    seleccionarAtaqueEnemigo();
+}
+
+/* ME GUSTARÍA PODER REDUCIR EL CÓDIGO REPETIDO DE LOS ATAQUES, PERO NO ME FUNCIONA...
+function atacarJugador(ataque) {
+    ataqueJugador = ataque;
+    let spanAtaqueJugador = document.getElementById("ataque-jugador");
+    spanAtaqueJugador.innerHTML = atacarJugador;
+    ataqueEnemigo
+}
+*/
+
+function seleccionarAtaqueEnemigo() {
+    let indiceAleatorio = aleatorio(0,2);
+    let ataqueEnemigo =  ataques[indiceAleatorio];
+
+    spanAtaqueEnemigo = document.getElementById("ataque-enemigo");
+    spanAtaqueEnemigo.innerHTML = ataqueEnemigo;
+
 }
 
 
