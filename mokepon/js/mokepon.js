@@ -1,5 +1,7 @@
-const mascotas = ["hipodoge", "capipepo", "ratigueya"];
+const mascotas = ["HIPODOGE", "CAPIPEPO", "RATIGUEYA"];
 const ataques = ["FUEGO 🔥", "AGUA 💧", "TIERRA 🌱"];
+let mascotaJugador;
+let mascotaEnemigo;
 let ataqueJugador;
 let ataqueEnemigo;
 
@@ -29,9 +31,10 @@ function seleccionarMascotaJugador() {
     let seleccion = false;
     let spanMascotaJugador = document.getElementById("mascota-jugador");
     for (mascota of mascotas) {
-        if (document.getElementById(mascota).checked) {
+        if (document.getElementById(mascota.toLowerCase()).checked) {
             seleccion = true;
-            spanMascotaJugador.innerHTML = mascota.toUpperCase(); // cambio el contenido de la página, exactamente donde sale la mascota elegida por el jugador
+            mascotaJugador = mascota
+            spanMascotaJugador.innerHTML = mascotaJugador; // cambio el contenido de la página, exactamente donde sale la mascota elegida por el jugador
         }
     }
 
@@ -54,27 +57,39 @@ function seleccionarMascotaEnemigo() {
     // escoge aletaroriamente la mascota del enemigo
 
     let indiceAleatorio = aleatorio(0,2); // genero un índice aletorio entre 0 y 2 (inclusives)
-    let mascota = mascotas[indiceAleatorio]; // busco la mascota con el índice
+    mascotaEnemigo = mascotas[indiceAleatorio]; // busco la mascota con el índice
 
     let spanMascotaEnemigo = document.getElementById("mascota-enemigo"); // obtengo el span de la mascota del enemigo
-    spanMascotaEnemigo.innerHTML = mascota.toUpperCase(); // lo modifico con la mascota aleatoria
+    spanMascotaEnemigo.innerHTML = mascotaEnemigo; // lo modifico con la mascota aleatoria
 } 
 
 // ---------------------- SELECCIÓN DE ATAQUES ------------------------------
 
 function ataqueFuego() {
-    ataqueJugador = "FUEGO 🔥";
-    seleccionarAtaqueEnemigo();
+    if (mascotaJugador) {
+        ataqueJugador = "FUEGO 🔥";
+        seleccionarAtaqueEnemigo();
+    } else {
+        alert("¡No has seleccionado una mascota!");
+    }
 }
 
 function ataqueAgua() {
-    ataqueJugador = "AGUA 💧";
-    seleccionarAtaqueEnemigo();
+    if (mascotaJugador) {
+        ataqueJugador = "AGUA 💧";
+        seleccionarAtaqueEnemigo();
+    } else {
+        alert("¡No has seleccionado una mascota!");
+    }
 }
 
 function ataqueTierra() {
-    ataqueJugador = "TIERRA 🌱";
-    seleccionarAtaqueEnemigo();
+    if (mascotaJugador) {
+        ataqueJugador = "TIERRA 🌱";
+        seleccionarAtaqueEnemigo();
+    } else {
+        alert("¡No has seleccionado una mascota!");
+    }
 }
 
 /* ME GUSTARÍA PODER REDUCIR EL CÓDIGO REPETIDO DE LOS ATAQUES, PERO NO ME FUNCIONA...
@@ -99,7 +114,7 @@ function crearMensajes() {
     // imprimer nuevos mensajes con los ataques
 
     let parrafo = document.createElement("p"); // creo un párrago
-    parrafo.innerHTML = "Tu mascota atacó con " + ataqueJugador + "\nLa mascota del enemigo atacó con " + ataqueEnemigo; // le doy contenido al párrafo
+    parrafo.innerHTML = "Tu mascota " + mascotaJugador + " atacó con " + ataqueJugador + "La mascota " + mascotaEnemigo + " del enemigo atacó con " + ataqueEnemigo; // le doy contenido al párrafo
 
     sectionMensajes = document.getElementById("mensajes"); // obtengo la sección de Mensajes
     sectionMensajes.appendChild(parrafo); // inserto el párrafo en el DOM
