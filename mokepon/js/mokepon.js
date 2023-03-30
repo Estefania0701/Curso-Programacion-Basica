@@ -46,6 +46,8 @@ function seleccionarMascotaJugador() {
     } // si seleccionó una mascota correctamente 
     else {
         seleccionarMascotaEnemigo();
+        let botonMascotaJugador = document.getElementById("boton-seleccionar-mascota");
+        botonMascotaJugador.disabled = true;
     }
 }
 
