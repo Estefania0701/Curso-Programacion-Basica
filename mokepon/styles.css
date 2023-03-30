@@ -27,32 +27,71 @@ MODELO DE CAJA
 
 */
 
-.titulo {
-    color: #B35657; 
-    width: 350px;
-    height: 50px;
-    background-color:#CFEDFF;
+/*fuente importada de Google fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Concert+One&display=swap');
+
+body {
+    font-family: 'Concert One', cursive;
+    background-color: #D9FCED;
 }
 
 #seleccionar-mascota {
-    height: 100vh; /*para que ocupe todo el alto visible*/
-    display: flex;
+    height: 90vh; /*para que ocupe todo el alto visible*/
+    display: flex; 
     flex-direction: column; /*orientación vertical*/
     justify-content: center; /*justificar el contenido en la mitad verticalmente*/
     align-items: center; /*ahora en la mitad horizontalmente*/
 }
 
+.titulo {
+    font-family: 'Bungee Inline', cursive;
+    color: #B36A5D; 
+    font-size: 60px;
+    margin: 5px 10px 0px 10px;
+}
+
+.subtitulo {
+    font-size: 40px;
+    margin-bottom: 60px;
+}
+
+.tarjetas{
+    display: flex; /*una al lado de la otra*/
+    gap : 10px;
+}
+
 .tajeta-de-mokepon {
-    width: 100px;
-    height: 100px;
-    background: aquamarine;
+    color: white;
+    font-size: 20px;
+    width: 180px;
+    height: 200px;
+    background: #12302B;
     padding: 10px;
     box-sizing: border-box;
-    margin: 10px;
-    border: 1px solid hotpink;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+/*Para seleccionar las imagenes de la clase*/
+.tajeta-de-mokepon img {
+    width: 180px;
 }
 
 input {
     display: none; /*para ocultar los círculos de selección*/
+}
+
+#boton-seleccionar-mascota {
+    background-color: #B36A5D;
+    margin: 30px 20px 10px 5px;
+    width: 320px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Concert One', cursive;
+    font-size: 20px;
+
 }
 
