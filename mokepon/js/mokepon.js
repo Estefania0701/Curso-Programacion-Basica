@@ -23,6 +23,9 @@ function iniciarJuego() {
     botonFuego.addEventListener("click", ataqueFuego);
     botonAgua.addEventListener("click", ataqueAgua);
     botonTierra.addEventListener("click", ataqueTierra);
+    
+    let botonReiniciar = document.getElementById("boton-reiniciar");
+    botonReiniciar.addEventListener("click", reiniciarJuego);
 }
 
 // ---------------------- SELECCIÓN DE MASCOTAS ------------------------------
@@ -136,8 +139,10 @@ function revisarVidas() {
 
     if (vidasEnemigo == 0) {
         mostrarResultado("¡Ganaste el combate! ¡FELICITACIONES! 🏆");
+        deshabilitarAtaques();
     } else if (vidasJugador == 0) {
         mostrarResultado("¡OH, NO! Has perdido el combate 😞");
+        deshabilitarAtaques();
     }
 }
 
@@ -157,6 +162,19 @@ function mostrarResultado(mensaje) {
 
     sectionMensajes = document.getElementById("mensajes");
     sectionMensajes.appendChild(parrafo);
+}
+
+function deshabilitarAtaques() {
+    let botonFuego = document.getElementById("boton-fuego");
+    let botonAgua = document.getElementById("boton-agua");
+    let botonTierra = document.getElementById("boton-tierra");
+    botonFuego.disabled = true;
+    botonAgua.disabled = true;
+    botonTierra.disabled = true;
+}
+
+function reiniciarJuego() {
+    location.reload();
 }
 
 
