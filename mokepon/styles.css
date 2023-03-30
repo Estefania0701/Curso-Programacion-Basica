@@ -1,11 +1,36 @@
-/* 
-Selectores:
+/* SELECTORES
     h1 = de tipo
     . = de classs
     # = de id 
+
+DISPLAY
+    - Block: Ocupa todo el ancho de la pantalla (por defecto)
+    - Inline: Ocupa solo un pedazo. 
+        Elementos como label lo tienen y no admiten redimensión.
+    - Inline-Block: Sí admite redimensión, pero se agrupa uno al lado del otro como los inline.
+
+
+FLEXBOX: sirve para alinear los elementos de forma orizontal o vertical
+- Importante tener elementos contenedores y elementos hijos
+- Puede haber elementos que sean tanto hijos como padres
+- Requiere display flex (solo para padres)
+- Por defecto display flex está en row, pero se puede column
+- Guía: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
 */
 
-
 .titulo {
-    color: #34BE86;
+    color: #B35657; 
+    width: 350px;
+    height: 50px;
+    background-color:#CFEDFF;
 }
+
+#seleccionar-mascota {
+    height: 100vh; /*para que ocupe todo el alto visible*/
+    display: flex;
+    flex-direction: column; /*orientación vertical*/
+    justify-content: center; /*justificar el contenido en la mitad verticalmente*/
+    align-items: center; /*ahora en la mitad horizontalmente*/
+}
+
