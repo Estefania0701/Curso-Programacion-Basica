@@ -2,11 +2,10 @@ const mascotas = ["HIPODOGE", "CAPIPEPO", "RATIGUEYA"];
 const ataques = ["FUEGO 🔥", "AGUA 💧", "TIERRA 🌱"];
 let mascotaJugador;
 let mascotaEnemigo;
-let vidasJugador = 3;
-let vidasEnemigo = 3;
 let ataqueJugador;
 let ataqueEnemigo;
-let resultadoCombate;
+let vidasJugador = 3;
+let vidasEnemigo = 3;
 
 function iniciarJuego() {
     // inicia el juego
@@ -95,15 +94,6 @@ function ataqueTierra() {
     }
 }
 
-/* ME GUSTARÍA PODER REDUCIR EL CÓDIGO REPETIDO DE LOS ATAQUES, PERO NO ME FUNCIONA...
-function atacarJugador(ataque) {
-    ataqueJugador = ataque;
-    let spanAtaqueJugador = document.getElementById("ataque-jugador");
-    spanAtaqueJugador.innerHTML = atacarJugador;
-    ataqueEnemigo
-}
-*/
-
 function seleccionarAtaqueEnemigo() {
     // selecciona un ataque aleatorio del enemigo
 
@@ -111,33 +101,60 @@ function seleccionarAtaqueEnemigo() {
     ataqueEnemigo =  ataques[indiceAleatorio];
 
     combate();
-    crearMensajes();
 }
 
 function combate() {
+
+    let resultadoCombate;
+
     jugador = ataqueJugador.slice(0, -3);
     enemigo = ataqueEnemigo.slice(0, -3);
 
     if (jugador==enemigo) {
-        resultadoCombate = "EMPATE";
+        resultadoCombate = "EMPATE"; 
     } 
     else if ((jugador=="FUEGO" && enemigo=="TIERRA") || (jugador=="TIERRA" && enemigo=="AGUA") || (jugador=="AGUA" && enemigo=="FUEGO")) {
         resultadoCombate = "GANASTE";
+        vidasEnemigo--;
     } 
     else {
         resultadoCombate = "PERDISTE";
+        vidasJugador--;
     }
 
+    crearMensajes(resultadoCombate);
+    revisarVidas();
 }
 
-function crearMensajes() {
+function revisarVidas() {
+    let spanVidasJugador = document.getElementById("vidas-jugador")
+    let spanVidasEnemigo = document.getElementById("vidas-enemigo")
+    spanVidasJugador.innerHTML = vidasJugador;
+    spanVidasEnemigo.innerHTML = vidasEnemigo;
+
+    if (vidasEnemigo == 0) {
+        mostrarResultado("¡Ganaste el combate! ¡FELICITACIONES! 🏆");
+    } else if (vidasJugador == 0) {
+        mostrarResultado("¡OH, NO! Has perdido el combate 😞");
+    }
+}
+
+function crearMensajes(mensaje) {
     // imprimer nuevos mensajes con los ataques
 
-    let parrafo = document.createElement("p"); // creo un párrago
-    parrafo.innerHTML = "Tu mascota atacó con " + ataqueJugador + " y la mascota del enemigo atacó con " + ataqueEnemigo + " ---> " + resultadoCombate; // le doy contenido al párrafo
+    let parrafo = document.createElement("p"); // creo un párrafo
+    parrafo.innerHTML = "Tu mascota atacó con " + ataqueJugador + " y la mascota del enemigo atacó con " + ataqueEnemigo + " ---> " + mensaje; // le doy contenido al párrafo
 
     sectionMensajes = document.getElementById("mensajes"); // obtengo la sección de Mensajes
     sectionMensajes.appendChild(parrafo); // inserto el párrafo en el DOM
+}
+
+function mostrarResultado(mensaje) {
+    let parrafo = document.createElement("p"); // creo un párrafo
+    parrafo.innerHTML = mensaje;
+
+    sectionMensajes = document.getElementById("mensajes");
+    sectionMensajes.appendChild(parrafo);
 }
 
 
