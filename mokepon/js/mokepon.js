@@ -10,6 +10,14 @@ let vidasEnemigo = 3;
 function iniciarJuego() {
     // inicia el juego
 
+    // escondo la sección de ataque
+    let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque");
+    sectionSeleccionarAtaque.style.display = "none"; // para que se oculte toda la sección
+
+    // escondo la sección de reiniciar
+    let sectionReiniciar = document.getElementById("reiniciar");
+    sectionReiniciar.style.display = "none"; // para que se oculte toda la sección
+
     // selecciono el botón con el id boton-mascota
     let botonMascota = document.getElementById("boton-seleccionar-mascota");
     // escucho sus eventos, especificando el click, y le asigno una función
@@ -24,11 +32,12 @@ function iniciarJuego() {
     botonAgua.addEventListener("click", ataqueAgua);
     botonTierra.addEventListener("click", ataqueTierra);
     
+    // ajusto el botón de reiniciar
     let botonReiniciar = document.getElementById("boton-reiniciar");
     botonReiniciar.addEventListener("click", reiniciarJuego);
 }
 
-// ---------------------- SELECCIÓN DE MASCOTAS ------------------------------
+// --------------------- SELECCIÓN DE MASCOTAS ------------------------------
 
 function seleccionarMascotaJugador() {
     // lanza una alerta de acuerdo a la mascota seleccionada
@@ -49,8 +58,14 @@ function seleccionarMascotaJugador() {
     } // si seleccionó una mascota correctamente 
     else {
         seleccionarMascotaEnemigo();
-        let botonMascotaJugador = document.getElementById("boton-seleccionar-mascota");
-        botonMascotaJugador.disabled = true;
+
+        // oculto la sección seleccionar mascota
+        let sectionSeleccionarMascota = document.getElementById("seleccionar-mascota");
+        sectionSeleccionarMascota.style.display = "none";
+        
+        // ahora muestro la sección de ataque
+        let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque");
+        sectionSeleccionarAtaque.style.display = "block";
     }
 }
 
@@ -73,30 +88,18 @@ function seleccionarMascotaEnemigo() {
 // ---------------------- SELECCIÓN DE ATAQUES ------------------------------
 
 function ataqueFuego() {
-    if (mascotaJugador) {
-        ataqueJugador = "FUEGO 🔥";
-        seleccionarAtaqueEnemigo();
-    } else {
-        alert("¡No has seleccionado una mascota!");
-    }
+    ataqueJugador = "FUEGO 🔥";
+    seleccionarAtaqueEnemigo();
 }
 
 function ataqueAgua() {
-    if (mascotaJugador) {
-        ataqueJugador = "AGUA 💧";
-        seleccionarAtaqueEnemigo();
-    } else {
-        alert("¡No has seleccionado una mascota!");
-    }
+    ataqueJugador = "AGUA 💧";
+    seleccionarAtaqueEnemigo();
 }
 
 function ataqueTierra() {
-    if (mascotaJugador) {
-        ataqueJugador = "TIERRA 🌱";
-        seleccionarAtaqueEnemigo();
-    } else {
-        alert("¡No has seleccionado una mascota!");
-    }
+    ataqueJugador = "TIERRA 🌱";
+    seleccionarAtaqueEnemigo();
 }
 
 function seleccionarAtaqueEnemigo() {
@@ -107,6 +110,8 @@ function seleccionarAtaqueEnemigo() {
 
     combate();
 }
+
+// ------------------------ COMBATE JUGADORES ------------------------------
 
 function combate() {
 
@@ -156,6 +161,8 @@ function crearMensajes(mensaje) {
     sectionMensajes.appendChild(parrafo); // inserto el párrafo en el DOM
 }
 
+// -------------------------- FIN DEL COMBATE --------------------------------
+
 function mostrarResultado(mensaje) {
     let parrafo = document.createElement("p"); // creo un párrafo
     parrafo.innerHTML = mensaje;
@@ -171,6 +178,10 @@ function deshabilitarAtaques() {
     botonFuego.disabled = true;
     botonAgua.disabled = true;
     botonTierra.disabled = true;
+
+    // ahora muestro la sesión reiniciar
+    let sectionReiniciar = document.getElementById("reiniciar");
+    sectionReiniciar.style.display = "block";
 }
 
 function reiniciarJuego() {
@@ -178,7 +189,10 @@ function reiniciarJuego() {
 }
 
 
-
 // evento para cuando cargue todo el HTML (página)
 // iniciar el juego
 window.addEventListener("load", iniciarJuego)
+
+
+// quitar la funcionalidad de desahibilitar seleccionar mascota
+// en su lugar, esconder la sección luego de haber escogido mascota
